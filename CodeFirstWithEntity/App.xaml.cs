@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeFirstWithEntity.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,24 @@ namespace CodeFirstWithEntity
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            using (TestDbContext context = new TestDbContext())
+            {
+                context.Groups.Add(new Group()
+                {
+                    Name = "A6"
+                });
+
+                context.Students.Add(new Student()
+                {
+                    Name = "Anar",
+                    Surname = "Ahmadov",
+                    Mark = 5.0                   
+
+                });
+                context.SaveChanges();
+            }
+        }
     }
 }
